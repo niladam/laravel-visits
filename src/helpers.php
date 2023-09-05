@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Agent\Facades\Agent;
 use Niladam\LaravelVisits\Concerns\CanHaveVisits;
@@ -18,6 +17,7 @@ if (! function_exists('visitUrl')) {
         $record['url'] = str($url)
             ->when(config('laravel-visits.remove_current_app_domain'), fn ($str) => $str->replace(search: config('app.url'), replace: ''))
             ->when(! empty(config('laravel-visits.replace_in_urls')), fn ($str) => $str->replace(search: config('laravel-visits.replace_in_urls'), replace: ''))
+            ->replaceLast(search: '?', replace: '')
             ->toString();
 
         $job = config('laravel-visits.overwrites.job_url', RecordVisitUrlJob::class);
@@ -62,7 +62,7 @@ if (! function_exists('visitModel')) {
 
 if (! function_exists('visit')) {
     function visit(
-        CanHaveVisits | string $visitable,
+        CanHaveVisits|string $visitable,
         int $count = 1,
         string $referer = null,
         string $platform = null,
@@ -96,7 +96,7 @@ if (! function_exists('visit')) {
 }
 
 if (! function_exists('recordVisit')) {
-    function recordVisit(CanHaveVisits | string $visitable)
+    function recordVisit(CanHaveVisits|string $visitable)
     {
         return visit($visitable);
     }
