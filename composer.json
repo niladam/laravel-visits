@@ -1,0 +1,55 @@
+{
+    "name": "niladam/laravel-visits",
+    "description": "A simple package to record visits on your eloquent models or pages",
+    "keywords": [
+        "niladam",
+        "laravel-visits"
+    ],
+    "homepage": "https://github.com/niladam/laravel-visits",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Madalin Tache",
+            "email": "niladam@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^8.0 || ^9.0 || ^10.0",
+        "illuminate/config": "^8.0 || ^9.0 || ^10.0",
+        "illuminate/database": "^8.0 || ^9.27 || ^10.0",
+        "jenssegers/agent": "^2.6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Niladam\\LaravelVisits\\": "src"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Niladam\\LaravelVisits\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Niladam\\LaravelVisits\\LaravelVisitsServiceProvider"
+            ],
+            "aliases": {
+                "LaravelVisits": "Niladam\\LaravelVisits\\LaravelVisitsFacade"
+            }
+        }
+    }
+}

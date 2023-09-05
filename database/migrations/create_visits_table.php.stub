@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('visits', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedInteger('user_id')->index()->nullable();
+            $table->unsignedInteger('visitable_id')->nullable();
+            $table->string('visitable_type')->nullable();
+            $table->string('url')->index()->nullable();
+            $table->string('platform', 10);
+            $table->string('referrer')->nullable();
+            $table->timestamps();
+
+            $table->index(['visitable_id', 'visitable_type']);
+        });
+
+        DB::statement(query: 'ALTER TABLE `visits` ADD `ip_address` VARBINARY(16) after `id`');
+    }
+
+    public function down(): void
+    {
+        DB::statement(query: 'ALTER TABLE `visits` DROP COLUMN `ip_address`');
+
+        Schema::dropIfExists('visits');
+    }
+};
