@@ -1,5 +1,8 @@
 # Laravel Visits - simple drop-in package that records visits.
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/niladam/laravel-visits.svg?style=flat-square)](https://packagist.org/packages/niladam/laravel-visits)
+[![Total Downloads](https://img.shields.io/packagist/dt/niladam/laravel-visits.svg?style=flat-square)](https://packagist.org/packages/niladam/laravel-visits)
+
 This is a small package that allows you to easily record visits to your models and / or custom URLs, either by using the included middleware or by using the provided helpers.
 
 The package stores the visits in a separate table, so it doesn't bloat your existing tables.
