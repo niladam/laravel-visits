@@ -77,7 +77,11 @@ class Visit extends Model
 
     public function isMobile(): bool
     {
-        return in_array($this->platform, ['phone', 'tablet']);
+        return in_array(
+            needle: $this->platform,
+            haystack: ['phone', 'tablet'],
+            strict: true
+        );
     }
 
     public function isDesktop(): bool

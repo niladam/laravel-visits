@@ -87,15 +87,16 @@ $product = Product::latest()->first();
 recordVisit($product);
 
 $url = 'https://my-cool-domain.app/some-url';
+
 recordVisit($url);
 ```
 
-You can also record visits using the `visit` helper which looks like this:
+You can also record visits using the `lvVisit` helper which looks like this:
 
 ```php
 $product = Product::latest()->first();
 
-visit(
+lvVisit(
     visitable: $product, 
     count: 1, // optional, defaults to 1
     referer: 'some-referer', // optional, defaults to null
@@ -106,7 +107,7 @@ visit(
 
 $url = 'https://my-cool-domain.app/some-url';
 
-visit(
+lvVisit(
     visitable: $url, 
     count: 4, 
     async: true

@@ -7,8 +7,8 @@ use Niladam\LaravelVisits\Jobs\RecordVisitJob;
 use Niladam\LaravelVisits\Jobs\RecordVisitUrlJob;
 use Niladam\LaravelVisits\Models\Visit;
 
-if (! function_exists('visitUrl')) {
-    function visitUrl(
+if (! function_exists('lvVisitUrl')) {
+    function lvVisitUrl(
         string $url,
         array $record,
         int $count = 1,
@@ -40,8 +40,8 @@ if (! function_exists('visitUrl')) {
     }
 }
 
-if (! function_exists('visitModel')) {
-    function visitModel(
+if (! function_exists('lvVisitModel')) {
+    function lvVisitModel(
         $visitable,
         array $record,
         int $count = 1,
@@ -60,8 +60,8 @@ if (! function_exists('visitModel')) {
     }
 }
 
-if (! function_exists('visit')) {
-    function visit(
+if (! function_exists('lvVisit')) {
+    function lvVisit(
         CanHaveVisits|string $visitable,
         int $count = 1,
         string $referer = null,
@@ -88,16 +88,16 @@ if (! function_exists('visit')) {
         ];
 
         if (is_a($visitable, Model::class)) {
-            return visitModel(visitable: $visitable, record: $record, count: $count, async: $async);
+            return lvVisitModel(visitable: $visitable, record: $record, count: $count, async: $async);
         }
 
-        return visitUrl(url: $visitable, record: $record, count: $count, async: $async);
+        return lvVisitUrl(url: $visitable, record: $record, count: $count, async: $async);
     }
 }
 
 if (! function_exists('recordVisit')) {
     function recordVisit(CanHaveVisits|string $visitable)
     {
-        return visit($visitable);
+        return lvVisit($visitable);
     }
 }
